@@ -40,18 +40,13 @@ class Main {
 
     for (int i = 0; i < 7; i++) {
       for (int j = 0; j < 16; j++) {
-        int[] nums = { 4, 6, 8 };
 
-        if (f[i] == 12) {
-          n[i][j] = func1(x[j]);
-        }
+        switch (f[i]) {
+          case 12 -> n[i][j] = func1(x[j]);
 
-        else if (binarySearch(nums, f[i], 0, nums.length - 1) != -1) {
-          n[i][j] = func2(x[j]);
-        }
-        
-        else {
-          n[i][j] = func3(x[j]);
+          case 4, 6, 8 -> n[i][j] = func2(x[j]);
+
+          default -> n[i][j] = func3(x[j]);
         }
       }
     }
@@ -68,26 +63,6 @@ class Main {
 
   static double func3 (double num) {
     return Math.pow(Math.pow(Math.asin(Math.cos(num)), 3), 4. / Math.pow(Math.tan(Math.asin((num - 6) / 16.)), Math.tan(Math.cos(num))));
-  }
-
-  static int binarySearch(int[] sortedArray, int target, int left, int right) {
-    int index = -1;
-
-    while (left <= right) {
-      int mid = left + ((right - left) / 2);
-
-      if (sortedArray[mid] < target) {
-        left = mid + 1;
-
-      } else if (sortedArray[mid] > target) {
-        right = mid - 1;
-
-      } else if (sortedArray[mid] == target) {
-        index = mid;
-        break;
-      }
-    }
-    return index;
   }
 
   static void print2dArray (double[][] n) {
